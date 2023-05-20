@@ -20,6 +20,7 @@ public readonly struct Distance : IComparable<Distance>, IEquatable<Distance>, I
     public double StatuteMiles { get => distance / METRES_PER_STATUTE_MILE; }
     public double Kilometres { get => distance / METRES_PER_KILOMETRE; }
     public double Feet { get => distance / METRES_PER_FOOT; }
+    public double Metres { get => distance; }
     public Distance(double metres) => distance = metres;
     public static Distance FromNauticalMiles(double nauticalMiles) => new(nauticalMiles * METRES_PER_NAUTICAL_MILE);
     public static Distance FromStatuteMiles(double statuteMiles) => new(statuteMiles * METRES_PER_STATUTE_MILE);
@@ -46,7 +47,7 @@ public readonly struct Distance : IComparable<Distance>, IEquatable<Distance>, I
     public int CompareTo(Distance other) => distance.CompareTo(other.distance);
     public bool Equals(Distance other) => distance.Equals(other.distance);
     public int CompareTo(object? obj) => distance.CompareTo(obj);
-    public override bool Equals(object? obj) => obj is Distance dobject && Equals(dobject);
+    public override bool Equals(object? obj) => obj is Distance obj2 && Equals(obj2);
     public override int GetHashCode() => distance.GetHashCode();
 
 }
